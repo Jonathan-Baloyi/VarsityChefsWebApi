@@ -36,6 +36,7 @@ namespace VarsityChefsWebApi.Controllers
         {
             return await context.Applications
                 .Where(x => x.Email == email)
+                .Include( user => user.Identity)
                 .Include(a => a.AlternativePerson)
                 .ThenInclude(p => p.AlternativeAddress)
                 .Include(postal => postal.PostalAddress)
