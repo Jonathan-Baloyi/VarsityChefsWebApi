@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace VarsityChefsWebApi.Models
 {
+    [ComplexType]
     public class ResidentialAddress
     {
-        public int Id { get; set; }
         public string ResLine1 { get; set; }
         public string ResLine2 { get; set; }
         public string ResLine3 { get; set; }

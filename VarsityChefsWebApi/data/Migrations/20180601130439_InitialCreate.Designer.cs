@@ -10,7 +10,7 @@ using VarsityChefsWebApi.data.DbContext;
 namespace VarsityChefsWebApi.data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180601091458_InitialCreate")]
+    [Migration("20180601130439_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -187,60 +187,19 @@ namespace VarsityChefsWebApi.data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("VarsityChefsWebApi.Models.AlternativeAddress", b =>
+            modelBuilder.Entity("VarsityChefsWebApi.Models.Applicant", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("AlternativeCity");
-
-                    b.Property<string>("AlternativeCode");
-
-                    b.Property<string>("AlternativeCountry");
-
-                    b.Property<string>("AlternativeLine1");
-
-                    b.Property<string>("AlternativeLine2");
-
-                    b.Property<string>("AlternativeLine3");
-
-                    b.Property<string>("AlternativeProvince");
-
-                    b.Property<string>("AlternativeSurburb");
+                    b.Property<string>("IdentityId");
 
                     b.HasKey("Id");
 
-                    b.ToTable("AlternativeAddress");
-                });
+                    b.HasIndex("IdentityId");
 
-            modelBuilder.Entity("VarsityChefsWebApi.Models.AlternativePerson", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("AlternativeAddressId");
-
-                    b.Property<string>("AlternativeCellNumber");
-
-                    b.Property<string>("AlternativeEmailAddress");
-
-                    b.Property<string>("AlternativeInitials");
-
-                    b.Property<string>("AlternativeName");
-
-                    b.Property<string>("AlternativeRelationShip");
-
-                    b.Property<string>("AlternativeSurname");
-
-                    b.Property<string>("AlternativeTelephone");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AlternativeAddressId");
-
-                    b.ToTable("AlternativePerson");
+                    b.ToTable("Applicants");
                 });
 
             modelBuilder.Entity("VarsityChefsWebApi.Models.Application", b =>
@@ -251,7 +210,7 @@ namespace VarsityChefsWebApi.data.Migrations
 
                     b.Property<string>("Allegies");
 
-                    b.Property<int?>("AlternativePersonId");
+                    b.Property<int>("ApplicantId");
 
                     b.Property<string>("BootSize");
 
@@ -273,13 +232,13 @@ namespace VarsityChefsWebApi.data.Migrations
 
                     b.Property<string>("Email");
 
+                    b.Property<string>("FirstName");
+
                     b.Property<bool>("Gender");
 
                     b.Property<bool>("HaveYouOrYourParentsBeenEmployedByVarsityChefs");
 
                     b.Property<bool>("HaveYouParticipatedInCookingShowBefore");
-
-                    b.Property<string>("IdentityId");
 
                     b.Property<string>("Institution");
 
@@ -287,13 +246,11 @@ namespace VarsityChefsWebApi.data.Migrations
 
                     b.Property<string>("JacketSize");
 
+                    b.Property<string>("LastName");
+
                     b.Property<string>("Nationality");
 
-                    b.Property<int?>("PostalAddressId");
-
                     b.Property<string>("Qualification");
-
-                    b.Property<int?>("ResidentialAddressId");
 
                     b.Property<string>("Telephone");
 
@@ -305,69 +262,7 @@ namespace VarsityChefsWebApi.data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AlternativePersonId");
-
-                    b.HasIndex("IdentityId");
-
-                    b.HasIndex("PostalAddressId");
-
-                    b.HasIndex("ResidentialAddressId");
-
                     b.ToTable("Applications");
-                });
-
-            modelBuilder.Entity("VarsityChefsWebApi.Models.PostalAddress", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("PostalCity");
-
-                    b.Property<string>("PostalCode");
-
-                    b.Property<string>("PostalCountry");
-
-                    b.Property<string>("PostalLine1");
-
-                    b.Property<string>("PostalLine2");
-
-                    b.Property<string>("PostalLine3");
-
-                    b.Property<string>("PostalProvince");
-
-                    b.Property<string>("PostalSurburb");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("PostalAddress");
-                });
-
-            modelBuilder.Entity("VarsityChefsWebApi.Models.ResidentialAddress", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("ResCity");
-
-                    b.Property<string>("ResCode");
-
-                    b.Property<string>("ResCountry");
-
-                    b.Property<string>("ResLine1");
-
-                    b.Property<string>("ResLine2");
-
-                    b.Property<string>("ResLine3");
-
-                    b.Property<string>("ResProvince");
-
-                    b.Property<string>("ResSurburb");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ResidentialAddress");
                 });
 
             modelBuilder.Entity("VarsityChefsWebApi.Models.AppUser", b =>
@@ -428,30 +323,132 @@ namespace VarsityChefsWebApi.data.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("VarsityChefsWebApi.Models.AlternativePerson", b =>
+            modelBuilder.Entity("VarsityChefsWebApi.Models.Applicant", b =>
                 {
-                    b.HasOne("VarsityChefsWebApi.Models.AlternativeAddress", "AlternativeAddress")
+                    b.HasOne("VarsityChefsWebApi.Models.AppUser", "Identity")
                         .WithMany()
-                        .HasForeignKey("AlternativeAddressId");
+                        .HasForeignKey("IdentityId");
                 });
 
             modelBuilder.Entity("VarsityChefsWebApi.Models.Application", b =>
                 {
-                    b.HasOne("VarsityChefsWebApi.Models.AlternativePerson", "AlternativePerson")
-                        .WithMany()
-                        .HasForeignKey("AlternativePersonId");
+                    b.OwnsOne("VarsityChefsWebApi.Models.AlternativePerson", "AlternativePerson", b1 =>
+                        {
+                            b1.Property<int?>("ApplicationId")
+                                .ValueGeneratedOnAdd()
+                                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.HasOne("VarsityChefsWebApi.Models.AppUser", "Identity")
-                        .WithMany()
-                        .HasForeignKey("IdentityId");
+                            b1.Property<string>("AlternativeCellNumber");
 
-                    b.HasOne("VarsityChefsWebApi.Models.PostalAddress", "PostalAddress")
-                        .WithMany()
-                        .HasForeignKey("PostalAddressId");
+                            b1.Property<string>("AlternativeEmailAddress");
 
-                    b.HasOne("VarsityChefsWebApi.Models.ResidentialAddress", "ResidentialAddress")
-                        .WithMany()
-                        .HasForeignKey("ResidentialAddressId");
+                            b1.Property<string>("AlternativeInitials");
+
+                            b1.Property<string>("AlternativeName");
+
+                            b1.Property<string>("AlternativeRelationShip");
+
+                            b1.Property<string>("AlternativeSurname");
+
+                            b1.Property<string>("AlternativeTelephone");
+
+                            b1.ToTable("Applications");
+
+                            b1.HasOne("VarsityChefsWebApi.Models.Application")
+                                .WithOne("AlternativePerson")
+                                .HasForeignKey("VarsityChefsWebApi.Models.AlternativePerson", "ApplicationId")
+                                .OnDelete(DeleteBehavior.Cascade);
+
+                            b1.OwnsOne("VarsityChefsWebApi.Models.AlternativeAddress", "AlternativeAddress", b2 =>
+                                {
+                                    b2.Property<int?>("AlternativePersonApplicationId")
+                                        .ValueGeneratedOnAdd()
+                                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                                    b2.Property<string>("AlternativeCity");
+
+                                    b2.Property<string>("AlternativeCode");
+
+                                    b2.Property<string>("AlternativeCountry");
+
+                                    b2.Property<string>("AlternativeLine1");
+
+                                    b2.Property<string>("AlternativeLine2");
+
+                                    b2.Property<string>("AlternativeLine3");
+
+                                    b2.Property<string>("AlternativeProvince");
+
+                                    b2.Property<string>("AlternativeSurburb");
+
+                                    b2.ToTable("Applications");
+
+                                    b2.HasOne("VarsityChefsWebApi.Models.AlternativePerson")
+                                        .WithOne("AlternativeAddress")
+                                        .HasForeignKey("VarsityChefsWebApi.Models.AlternativeAddress", "AlternativePersonApplicationId")
+                                        .OnDelete(DeleteBehavior.Cascade);
+                                });
+                        });
+
+                    b.OwnsOne("VarsityChefsWebApi.Models.PostalAddress", "PostalAddress", b1 =>
+                        {
+                            b1.Property<int?>("ApplicationId")
+                                .ValueGeneratedOnAdd()
+                                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                            b1.Property<string>("PostalCity");
+
+                            b1.Property<string>("PostalCode");
+
+                            b1.Property<string>("PostalCountry");
+
+                            b1.Property<string>("PostalLine1");
+
+                            b1.Property<string>("PostalLine2");
+
+                            b1.Property<string>("PostalLine3");
+
+                            b1.Property<string>("PostalProvince");
+
+                            b1.Property<string>("PostalSurburb");
+
+                            b1.ToTable("Applications");
+
+                            b1.HasOne("VarsityChefsWebApi.Models.Application")
+                                .WithOne("PostalAddress")
+                                .HasForeignKey("VarsityChefsWebApi.Models.PostalAddress", "ApplicationId")
+                                .OnDelete(DeleteBehavior.Cascade);
+                        });
+
+                    b.OwnsOne("VarsityChefsWebApi.Models.ResidentialAddress", "ResidentialAddress", b1 =>
+                        {
+                            b1.Property<int?>("ApplicationId")
+                                .ValueGeneratedOnAdd()
+                                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                            b1.Property<string>("ResCity");
+
+                            b1.Property<string>("ResCode");
+
+                            b1.Property<string>("ResCountry");
+
+                            b1.Property<string>("ResLine1");
+
+                            b1.Property<string>("ResLine2");
+
+                            b1.Property<string>("ResLine3");
+
+                            b1.Property<string>("ResProvince");
+
+                            b1.Property<string>("ResSurburb");
+
+                            b1.ToTable("Applications");
+
+                            b1.HasOne("VarsityChefsWebApi.Models.Application")
+                                .WithOne("ResidentialAddress")
+                                .HasForeignKey("VarsityChefsWebApi.Models.ResidentialAddress", "ApplicationId")
+                                .OnDelete(DeleteBehavior.Cascade);
+                        });
                 });
 #pragma warning restore 612, 618
         }

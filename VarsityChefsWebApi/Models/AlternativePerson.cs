@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace VarsityChefsWebApi.Models
 {
+    [ComplexType]
     public class AlternativePerson
     {
-        public int Id { get; set; }
         public string AlternativeName { get; set; }
         public string AlternativeSurname { get; set; }
         public string AlternativeInitials { get; set; }

@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace VarsityChefsWebApi.Models
 {
+    [ComplexType]
     public class AlternativeAddress
     {
-        public int Id { get; set; }
         public string AlternativeLine1 { get; set; }
         public string AlternativeLine2 { get; set; }
         public string AlternativeLine3 { get; set; }

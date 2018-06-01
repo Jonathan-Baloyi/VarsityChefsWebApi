@@ -30,36 +30,20 @@ namespace VarsityChefsWebApi.Controllers
         //    return await context.Applications.ToListAsync();
         //}
 
+
         // GET
         [HttpGet("{email}")]
         public async Task<Application> Get(string email)
         {
             return await context.Applications
                 .Where(x => x.Email == email)
-                .Include( user => user.Identity)
+                //.Include( user => user.Identity)
                 .Include(a => a.AlternativePerson)
                 .ThenInclude(p => p.AlternativeAddress)
                 .Include(postal => postal.PostalAddress)
                 .Include(res => res.ResidentialAddress)
                 .FirstAsync();
         }
-
-        //[HttpGet]
-        //[Route("/api/login")]
-        //public bool Login([FromQuery] string email, [FromQuery] string password)
-        //{
-        //    var user = context.Applications.FirstOrDefault(x => x.Email == email);
-        //    bool loggedIn = false;
-
-        //    if ( user != null && user.Password == password)
-        //    {
-        //         loggedIn = true;
-        //    } else
-        //    {
-        //        loggedIn = false;
-        //    }
-        //    return loggedIn;    
-        //}
 
         // POST
         [HttpPost]
