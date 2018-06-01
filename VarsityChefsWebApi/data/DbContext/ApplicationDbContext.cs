@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using AuthWebApi.Models.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ namespace VarsityChefsWebApi.data.DbContext
         public ApplicationDbContext(DbContextOptions options) : base(options)
         {
         }
+		
 
         public DbSet<Applicant> Applicants { get; set; }
         public DbSet<Application> Applications { get; set; }

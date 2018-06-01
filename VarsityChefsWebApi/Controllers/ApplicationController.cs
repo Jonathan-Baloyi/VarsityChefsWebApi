@@ -23,21 +23,34 @@ namespace VarsityChefsWebApi.Controllers
             this.context = _context;
         }
 
-        //// GET api/values
-        //[HttpGet]
-        //public async Task<IEnumerable<Application>> Get()
-        //{
-        //    return await context.Applications.ToListAsync();
-        //}
+        // GET api/values
+        [HttpGet]
+        public async Task<IEnumerable<Application>> Get()
+        {
+            return await context.Applications.ToListAsync();
+        }
 
 
         // GET
         [HttpGet("{email}")]
-        public async Task<Application> Get(string email)
+        public async Task<Application> GetByEmail(string email)
         {
             return await context.Applications
                 .Where(x => x.Email == email)
                 //.Include( user => user.Identity)
+                .Include(a => a.AlternativePerson)
+                .ThenInclude(p => p.AlternativeAddress)
+                .Include(postal => postal.PostalAddress)
+                .Include(res => res.ResidentialAddress)
+                .FirstAsync();
+        }
+
+        // GET
+        [HttpGet("{id}")]
+        public async Task<Application> GetById(int id)
+        {
+            return await context.Applications
+                .Where(x => x.Id == id)
                 .Include(a => a.AlternativePerson)
                 .ThenInclude(p => p.AlternativeAddress)
                 .Include(postal => postal.PostalAddress)
@@ -76,15 +89,15 @@ namespace VarsityChefsWebApi.Controllers
 
         }
 
-        // DELETE 
-        //[HttpDelete("{id}")]
-        //public void Delete(int id)
-        //{
-        //    var student = context.Applications.Find(id);
-        //    student.IsDeleted = true; // Soft Delete
-        //    context.Applications.Update(student);
-        //    context.SaveChanges();
+       // DELETE
+       [HttpDelete("{id}")]
+        public void Delete(int id)
+        {
+            var student = context.Applications.Find(id);
+            student.IsDeleted = true; // Soft Delete
+            context.Applications.Update(student);
+            context.SaveChanges();
 
-        //}
+        }
     }
 }

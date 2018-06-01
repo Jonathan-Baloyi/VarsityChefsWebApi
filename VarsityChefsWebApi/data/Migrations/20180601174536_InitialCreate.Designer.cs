@@ -10,7 +10,7 @@ using VarsityChefsWebApi.data.DbContext;
 namespace VarsityChefsWebApi.data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180601130439_InitialCreate")]
+    [Migration("20180601174536_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -265,13 +265,17 @@ namespace VarsityChefsWebApi.data.Migrations
                     b.ToTable("Applications");
                 });
 
-            modelBuilder.Entity("VarsityChefsWebApi.Models.AppUser", b =>
+            modelBuilder.Entity("AuthWebApi.Models.Entities.AppUser", b =>
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
+
+                    b.Property<long?>("FacebookId");
 
                     b.Property<string>("FirstName");
 
                     b.Property<string>("LastName");
+
+                    b.Property<string>("PictureUrl");
 
                     b.ToTable("AppUser");
 
@@ -325,7 +329,7 @@ namespace VarsityChefsWebApi.data.Migrations
 
             modelBuilder.Entity("VarsityChefsWebApi.Models.Applicant", b =>
                 {
-                    b.HasOne("VarsityChefsWebApi.Models.AppUser", "Identity")
+                    b.HasOne("AuthWebApi.Models.Entities.AppUser", "Identity")
                         .WithMany()
                         .HasForeignKey("IdentityId");
                 });

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AuthWebApi.Models.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,6 +11,5 @@ namespace VarsityChefsWebApi.Models
         public int Id { get; set; }
         public string IdentityId { get; set; }
         public AppUser Identity { get; set; }
-
     }
 }
