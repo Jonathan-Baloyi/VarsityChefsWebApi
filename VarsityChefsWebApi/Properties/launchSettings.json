@@ -18,12 +18,11 @@
     },
     "VarsityChefsWebApi": {
       "commandName": "Project",
-      "launchBrowser": true,
       "launchUrl": "api/values",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "http://localhost:55767/"
+      "applicationUrl": "http://localhost:5001/"
     }
   }
 }
