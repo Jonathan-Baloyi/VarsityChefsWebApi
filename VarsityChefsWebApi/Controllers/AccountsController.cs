@@ -1,19 +1,23 @@
 ﻿
 
+using System.Linq;
 using System.Threading.Tasks;
 using AuthWebApi.Helpers;
 using AuthWebApi.Models.Entities;
 using AuthWebApi.ViewModels;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using VarsityChefsWebApi.data.DbContext;
 using VarsityChefsWebApi.Models;
 
 namespace AuthWebApi.Controllers
 {
-  [Route("api/[controller]")]
-  public class AccountsController : Controller
+    [Produces("application/json")]
+    [Route("api/[controller]")]
+    public class AccountsController : Controller
   {
     private readonly ApplicationDbContext _appDbContext;
     private readonly UserManager<AppUser> _userManager;
@@ -49,5 +53,6 @@ namespace AuthWebApi.Controllers
 
         return new OkObjectResult("Account created");
     }
-  }
+   
+    }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Mime;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Swashbuckle.AspNetCore.SwaggerGen;
@@ -14,6 +15,7 @@ namespace VarsityChefsWebApi.Controllers
 {
     [Produces("application/json")]
     [Route("api/[controller]")]
+    [Authorize(Policy = "ApiUser")]
     public class ApplicationController : Controller
     {
         private ApplicationDbContext context;

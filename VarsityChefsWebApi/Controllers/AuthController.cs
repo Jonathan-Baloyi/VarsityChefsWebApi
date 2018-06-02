@@ -13,7 +13,8 @@ using Newtonsoft.Json;
 
 namespace AuthWebApi.Controllers
 {
-  [Route("api/[controller]")]
+    [Produces("application/json")]
+    [Route("api/[controller]")]
   public class AuthController : Controller
   {
     private readonly UserManager<AppUser> _userManager;
