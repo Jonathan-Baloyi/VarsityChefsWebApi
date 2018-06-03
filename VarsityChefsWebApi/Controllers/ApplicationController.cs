@@ -15,7 +15,6 @@ namespace VarsityChefsWebApi.Controllers
 {
     [Produces("application/json")]
     [Route("api/[controller]")]
-    [Authorize(Policy = "ApiUser")]
     public class ApplicationController : Controller
     {
         private ApplicationDbContext context;
