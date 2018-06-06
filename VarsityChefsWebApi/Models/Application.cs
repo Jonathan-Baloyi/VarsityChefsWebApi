@@ -18,6 +18,8 @@ namespace VarsityChefsWebApi.Models
         public string Telephone { get; set; }
         public string Email { get; set; }
         public bool Gender { get; set; }
+        public string IdNumber { get; set; }
+        public string passportNumber { get; set; }
         public string DateOfBirth { get; set; }
         public string Nationality { get; set; }
         public bool DoYouHaveApermentResidence { get; set; }
