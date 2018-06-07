@@ -238,6 +238,8 @@ namespace VarsityChefsWebApi.data.Migrations
 
                     b.Property<bool>("HaveYouParticipatedInCookingShowBefore");
 
+                    b.Property<string>("IdNumber");
+
                     b.Property<string>("Institution");
 
                     b.Property<bool>("IsDeleted");
@@ -248,7 +250,11 @@ namespace VarsityChefsWebApi.data.Migrations
 
                     b.Property<string>("Nationality");
 
+                    b.Property<string>("PassportNumber");
+
                     b.Property<string>("Qualification");
+
+                    b.Property<bool>("Status");
 
                     b.Property<string>("Telephone");
 

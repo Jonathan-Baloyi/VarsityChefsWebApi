@@ -19,7 +19,7 @@ namespace VarsityChefsWebApi.Models
         public string Email { get; set; }
         public bool Gender { get; set; }
         public string IdNumber { get; set; }
-        public string passportNumber { get; set; }
+        public string PassportNumber { get; set; }
         public string DateOfBirth { get; set; }
         public string Nationality { get; set; }
         public bool DoYouHaveApermentResidence { get; set; }
@@ -45,6 +45,8 @@ namespace VarsityChefsWebApi.Models
         public string YearStarted { get; set; }
         public bool Declaration { get; set; }
         public DateTime DateRegistered { get; set; }
+
+        public bool Status { get; set; }
 
         [JsonIgnore]
         public bool IsDeleted { get; set; }

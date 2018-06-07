@@ -67,11 +67,12 @@ namespace VarsityChefsWebApi.Controllers
             {
                 return "Email already exist";
   
-            } 
+            }
+            application.Status = false;
             application.IsDeleted = false;
             context.Applications.Add(application);
             context.SaveChanges();
-            return "Successfully saved";
+            return "Successfully submitted";
         }
 
         // PUT

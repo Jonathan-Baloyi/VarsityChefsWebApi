@@ -10,8 +10,8 @@ using VarsityChefsWebApi.data.DbContext;
 namespace VarsityChefsWebApi.data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180601174536_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20180607133316_InitializeData")]
+    partial class InitializeData
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -240,6 +240,8 @@ namespace VarsityChefsWebApi.data.Migrations
 
                     b.Property<bool>("HaveYouParticipatedInCookingShowBefore");
 
+                    b.Property<string>("IdNumber");
+
                     b.Property<string>("Institution");
 
                     b.Property<bool>("IsDeleted");
@@ -250,7 +252,11 @@ namespace VarsityChefsWebApi.data.Migrations
 
                     b.Property<string>("Nationality");
 
+                    b.Property<string>("PassportNumber");
+
                     b.Property<string>("Qualification");
+
+                    b.Property<bool>("Status");
 
                     b.Property<string>("Telephone");
 

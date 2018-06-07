@@ -51,7 +51,7 @@ namespace AuthWebApi.Controllers
         await _appDbContext.Applicants.AddAsync(new Applicant { IdentityId = userIdentity.Id});
         await _appDbContext.SaveChangesAsync();
 
-        return new OkObjectResult("Account created");
+        return new OkObjectResult("Successfully registered");
     }
    
     }

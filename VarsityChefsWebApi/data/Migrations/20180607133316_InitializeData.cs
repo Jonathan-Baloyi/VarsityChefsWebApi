@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace VarsityChefsWebApi.data.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class InitializeData : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -21,6 +21,8 @@ namespace VarsityChefsWebApi.data.Migrations
                     Telephone = table.Column<string>(nullable: true),
                     Email = table.Column<string>(nullable: true),
                     Gender = table.Column<bool>(nullable: false),
+                    IdNumber = table.Column<string>(nullable: true),
+                    PassportNumber = table.Column<string>(nullable: true),
                     DateOfBirth = table.Column<string>(nullable: true),
                     Nationality = table.Column<string>(nullable: true),
                     DoYouHaveApermentResidence = table.Column<bool>(nullable: false),
@@ -70,6 +72,7 @@ namespace VarsityChefsWebApi.data.Migrations
                     YearStarted = table.Column<string>(nullable: true),
                     Declaration = table.Column<bool>(nullable: false),
                     DateRegistered = table.Column<DateTime>(nullable: false),
+                    Status = table.Column<bool>(nullable: false),
                     IsDeleted = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
